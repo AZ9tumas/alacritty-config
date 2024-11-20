@@ -1,0 +1,43 @@
+import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/themes/catppuccin-latte.toml"
+  # "~/.config/alacritty/themes/google-light.toml"
+  "~/.config/alacritty/catppuccin-frappe.toml"
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[font]
+size = 10.5
+
+[font.offset]
+x = 0
+y = 1
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[mouse]
+hide_when_typing = true
+
+[cursor]
+style = "Beam"
+
+[window]
+opacity = 0.85
+decorations = "buttonless"
+
+[window.dimensions]
+columns = 145
+lines = 35
+
+[shell]
+program ="/usr/bin/fish"
