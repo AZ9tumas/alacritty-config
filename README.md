@@ -1,0 +1,1 @@
+- install curl from apt, not from snap
