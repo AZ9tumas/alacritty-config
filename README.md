@@ -100,26 +100,43 @@ For more details, visit the [Fish Shell GitHub repository](https://github.com/fi
 Oh My Posh is a prompt theme engine for any shell.
 
 1. **Install Oh My Posh**:
-   ```bash
-   brew install jandedobbeleer/oh-my-posh/oh-my-posh
-   ```
-
-2. **Configure Oh My Posh**:
-   - Create a configuration file:
+   - Using Homebrew:
      ```bash
-     touch ~/.config/oh-my-posh.json
+     brew install jandedobbeleer/oh-my-posh/oh-my-posh
      ```
-   - Add your desired theme configuration to `~/.config/oh-my-posh.json`.
+   - Alternatively, you can use the installation script:
+     ```bash
+     curl -s https://ohmyposh.dev/install.sh | bash -s
+     ```
+     This script installs the `oh-my-posh` executable and the latest themes.
 
-3. **Integrate with Fish**:
-   Add the following line to your `~/.config/fish/config.fish`:
-   ```fish
-   eval (oh-my-posh init fish --config ~/.config/oh-my-posh.json)
-   ```
+2. **Install Oh My Posh Themes**:
+   - Create a directory for the themes:
+     ```bash
+     mkdir -p ~/.config/fish/themes
+     ```
+   - Clone the official Oh My Posh themes repository into the newly created directory:
+     ```bash
+     git clone https://github.com/JanDeDobbeleer/oh-my-posh ~/.config/fish/themes
+     ```
+     This repository contains a variety of themes you can choose from.
 
-For more details, visit the [Oh My Posh GitHub repository](https://github.com/JanDeDobbeleer/oh-my-posh).
+3. **Configure Oh My Posh**:
+   - Choose a theme from the cloned repository. For example, to use the `easy-term.omp.json` theme:
+     ```bash
+     cp ~/.config/fish/themes/themes/easy-term.omp.json ~/.config/fish/themes/
+     ```
+   - Ensure the theme file is located at `~/.config/fish/themes/easy-term.omp.json`.
+
+4. **Integrate with Fish**:
+   - Add the following line to your `~/.config/fish/config.fish`:
+     ```fish
+     oh-my-posh init fish --config ~/.config/fish/themes/easy-term.omp.json | source
+     ```
+   - This command initializes Oh My Posh with the specified theme every time you start a new Fish shell session.
+
+For more details and additional themes, visit the [Oh My Posh GitHub repository](https://github.com/JanDeDobbeleer/oh-my-posh) and the [official documentation](https://ohmyposh.dev/docs/themes/).
 
 ---
 
 By following these steps, you can reinstall and configure your terminal environment with AstroNvim, Alacritty with Catppuccin themes, Fish shell, and Oh My Posh.
-
