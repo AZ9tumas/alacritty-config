@@ -137,6 +137,8 @@ Oh My Posh is a prompt theme engine for any shell.
 
 For more details and additional themes, visit the [Oh My Posh GitHub repository](https://github.com/JanDeDobbeleer/oh-my-posh) and the [official documentation](https://ohmyposh.dev/docs/themes/).
 
+**A customized version of the theme `easy-term.omp.json` is kept in the repo, which may also be used.**
+
 ---
 
 By following these steps, you can reinstall and configure your terminal environment with AstroNvim, Alacritty with Catppuccin themes, Fish shell, and Oh My Posh.
