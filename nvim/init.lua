@@ -24,16 +24,51 @@ require "polish"
 --vim.cmd("colorscheme onelight")
 --vim.cmd("colorscheme onedark")
 
-math.randomseed(os.time())
-local themes_arr = { "onedark_dark", "tokyodark", "onedark" }
-local random_n = math.random(1, #themes_arr) -- Select a random number based on the themes array length
+--[[ Check for any themes used last time, else select a random one. ]]
 
--- Notify the selected theme
-vim.notify(("Selected theme: [%d] %s"):format(random_n, themes_arr[random_n]), "info", { title = "Theme Selector" })
+-- Function to read the theme from a file
+local function read_theme_from_file(filepath)
+  local file = io.open(filepath, "r")
+  if file then
+    local content = file:read("*all")
+    file:close()
+    return content:match("^%s*(.-)%s*$") -- Trim any leading/trailing whitespace
+  end
+  return nil
+end
 
--- Set the colorscheme
-vim.cmd("colorscheme " .. themes_arr[random_n])
+-- Function to write the current theme to a file
+local function write_theme_to_file(filepath, theme)
+  local file = io.open(filepath, "w")
+  if file then
+    file:write(theme)
+    file:close()
+  else
+    vim.notify("Failed to open file for writing: " .. filepath, vim.log.levels.ERROR)
+  end
+end
 
+-- Path to the file storing the selected theme
+local theme_file_path = vim.fn.stdpath("config") .. "/temp.txt"
+
+-- Read the selected theme from the file or default to 'onedark'
+local selected_theme = read_theme_from_file(theme_file_path) or "onedark"
+
+-- Apply the selected theme
+vim.cmd("colorscheme " .. selected_theme)
+
+-- Autocommand group for exit actions
+local exit_group = vim.api.nvim_create_augroup("ExitGroup", { clear = true })
+
+-- Autocommand to save the current theme before exiting Neovim
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = exit_group,
+  callback = function()
+    local current_theme = vim.g.colors_name or "unknown"
+    write_theme_to_file(theme_file_path, current_theme)
+    vim.notify("Saved current theme: " .. current_theme, vim.log.levels.INFO)
+  end,
+})
 
 -- TypeScript and JavaScript setup
 local lspconfig = require('lspconfig')
