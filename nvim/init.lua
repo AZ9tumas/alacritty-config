@@ -24,6 +24,13 @@ require "polish"
 --vim.cmd("colorscheme onelight")
 --vim.cmd("colorscheme onedark")
 
+--[[ Custom theme setup ]]
+
+require("one_monokai").setup({
+    transparent = true,
+    italics = true,
+})
+
 --[[ Check for any themes used last time, else select a random one. ]]
 
 -- Function to read the theme from a file
